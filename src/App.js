@@ -1,14 +1,20 @@
-/** @jsxImportSource @emotion/react */
-
 // Imports
 import convert from 'color-convert';
 import { useState } from 'react';
-import Button from './Button';
 import ColorBlock from './ColorBlock';
 import ColorText from './ColorText';
+import Form from './Form';
 import Heading from './Heading';
-import SelectionField from './SelectionField';
-import TextField from './TextField';
+
+const divStyle = {
+  maxWidth: '800px',
+  margin: '50px auto',
+  padding: '20px 25px',
+  border: '3px solid #212529',
+  borderRadius: '10px',
+  boxShadow: '1px 1px 0 1px #212529',
+  fontFamily: 'Inter',
+};
 
 function App() {
   // State Variables
@@ -57,19 +63,18 @@ function App() {
 
   //
   return (
-    <>
+    <div style={divStyle}>
       <Heading />
       <ColorText value={colorText} />
-      <TextField
-        label="Hue"
-        id="hue"
-        onChange={handleTextChange}
-        value={color}
+      <Form
+        textFieldHandleChange={handleTextChange}
+        textFieldValue={color}
+        selectionFieldhandleLuminosity={handleLuminositySelection}
+        buttonOnClick={handleClick}
+        colorBlockColor={colorText}
       />
-      <SelectionField onClick={handleLuminositySelection} />
-      <Button onClick={handleClick} />
       <ColorBlock color={colorText} />
-    </>
+    </div>
   );
 }
 
