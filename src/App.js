@@ -65,6 +65,7 @@ function App() {
         setColorValue(colorInput);
         // Set Color Variale Back to Default
         setColorInput('');
+        return;
         // If input not valid
       } else {
         setColorInput('Invalid input');
