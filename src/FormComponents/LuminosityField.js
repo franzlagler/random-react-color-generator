@@ -41,7 +41,7 @@ const radioInputs = css`
 const singleRadioInput = css`
   display: grid;
   justify-items: center;
-  margin: 15px 20px 15px 5px;
+  margin: 20px 25px 10px 5px;
 `;
 
 // Function Component
