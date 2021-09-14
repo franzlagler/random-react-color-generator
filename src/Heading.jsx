@@ -1,11 +1,10 @@
-const headingStyle = {
-  fontSize: '50px',
-  fontWeight: 'bolder',
-  textAlign: 'center',
-};
+import styled from 'styled-components';
 
-function Heading() {
-  return <h1 style={headingStyle}>Random Color Generator</h1>;
-}
+const Heading = styled.h1`
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  font-size: 50px;
+`;
 
 export default Heading;

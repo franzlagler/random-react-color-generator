@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TextField from './TextField';
 
 const Label = styled.label`
   margin-left: 5px;
@@ -16,18 +17,25 @@ const TextInput = styled.input`
   font-size: 25px;
 `;
 
-function TextField(props) {
+function HueField(props) {
   return (
     <>
-      <Label htmlFor={props.id}>{props.labelName}</Label>
+      <TextField
+        id={props.id}
+        labelName={props.label}
+        value={props.value}
+        onChange={props.onChange}
+        placeholder="e.g. red or #123456"
+      />
+      <Label htmlFor={props.id}>{props.label}</Label>
       <TextInput
         id={props.id}
-        placeholder={props.inputPlaceholder}
+        value={props.value}
         onChange={props.onChange}
-        value={props.inputValue}
+        placeholder="e.g. red or #123456"
       />
     </>
   );
 }
 
-export default TextField;
+export default HueField;

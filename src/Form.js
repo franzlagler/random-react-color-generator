@@ -1,24 +1,27 @@
+import styled from 'styled-components';
 import Button from './FormComponents/Button';
-import SelectionField from './FormComponents/SelectionField';
+import LuminosityField from './FormComponents/LuminosityField';
 import TextField from './FormComponents/TextField';
 
-const formStyling = {
-  width: '300px',
-  margin: '0 auto',
-};
+const FormFields = styled.div`
+  width: 350px;
+  margin: 40px auto;
+`;
 
 function Form(props) {
   return (
-    <div style={formStyling}>
+    <FormFields>
       <TextField
-        label="Hue"
         id="hue"
-        onChange={props.textFieldHandleChange}
-        value={props.textFieldValue}
+        labelName="Hue"
+        inputValue={props.hueValue}
+        inputPlaceholder="e.g. red or #123456"
+        onChange={props.handleHueChange}
       />
-      <SelectionField onClick={props.selectionFieldhandleLuminosity} />
-      <Button onClick={props.buttonOnClick} />
-    </div>
+      <LuminosityField onClick={props.handleLuminositySelection} />
+
+      <Button onClick={props.buttonOnClick}>Generate</Button>
+    </FormFields>
   );
 }
 

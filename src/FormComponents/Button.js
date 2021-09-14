@@ -1,22 +1,16 @@
-const buttonStyling = {
-  display: 'block',
-  width: '150px',
-  height: '50px',
-  margin: '20px auto',
-  padding: '10px',
-  backgroundColor: '#212529',
-  border: '0',
-  borderRadius: '15px',
-  color: '#fff',
-  fontSize: '25px',
-};
+import styled from 'styled-components';
 
-function Button(props) {
-  return (
-    <button style={buttonStyling} onClick={props.onClick}>
-      Generate
-    </button>
-  );
-}
+const Button = styled.button`
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin: 30px auto;
+  padding: 10px;
+  background-color: #212529;
+  border: 0;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 35px;
+`;
 
 export default Button;
