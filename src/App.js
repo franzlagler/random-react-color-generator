@@ -29,6 +29,7 @@ function App() {
   // State Variables
   const [colorInput, setColorInput] = useState('');
   const [colorValue, setColorValue] = useState('#ffffff');
+  const [prevColorValue, setPrevColorValue] = useState('#ffffff');
   const [luminosity, setLuminosity] = useState('');
 
   const handleHueChange = ({ currentTarget }) => {
@@ -44,6 +45,7 @@ function App() {
     let hue, saturation, lightness;
     // If no color is entered
     if (!colorInput) {
+      setPrevColorValue(colorValue);
       hue = Math.floor(Math.random() * 360);
       saturation = 100;
       lightness = Math.random() * (80 - 30) + 30;
@@ -52,12 +54,14 @@ function App() {
     else {
       // If input keyword
       if (colorName[colorInput.toLowerCase()]) {
+        setPrevColorValue(colorValue);
         const colorValueHSL = convert.keyword.hsl(colorInput);
         [hue, saturation, lightness] = colorValueHSL;
 
         // If input HEX
       } else if (colorInput.match(/#[a-fA-F1-9]{6}\b/g)) {
         // Set Color Text Variable
+        setPrevColorValue(colorValue);
         setColorValue(colorInput);
         // Set Color Variale Back to Default
         setColorInput('');
@@ -85,6 +89,7 @@ function App() {
     setColorValue(colorValueHEX);
     // Set Color Variale Back to Default
     setColorInput('');
+    console.log(prevColorValue);
   }
 
   return (
@@ -113,7 +118,10 @@ function App() {
           colorBlockColor={colorValue}
         />
         <HorizontalRule />
-        <ColorBlock backgroundColorValue={colorValue} />
+        <ColorBlock
+          backgroundColorValue={colorValue}
+          prevBackgroundColorValue={prevColorValue}
+        />
         <HexColor colorValue={colorValue} />
       </div>
     </>
