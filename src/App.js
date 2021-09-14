@@ -1,32 +1,19 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, Global, jsx } from '@emotion/react';
 // Imports
 import convert from 'color-convert';
 import colorName from 'color-name';
-import { useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import React, { useState } from 'react';
 import ColorBlock from './DisplayColorComponents/ColorBlock';
 import HexColor from './DisplayColorComponents/HexColor';
 import Form from './Form';
 import Heading from './Heading';
 import HorizontalRule from './HorizontalRule';
-import MainContainer from './MainContainer';
 
 // Global Styles
-const GlobalStyle = createGlobalStyle`
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
 
-
-* {
-  font-family: 'Inter',sans-serif;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #ced4da;
-}
-
-`;
-
-const Container = styled.div`
+const mainContainer = css`
   max-width: 800px;
   margin: 50px auto;
   padding: 20px 25px;
@@ -43,8 +30,6 @@ function App() {
   const [colorInput, setColorInput] = useState('');
   const [colorValue, setColorValue] = useState('#ffffff');
   const [luminosity, setLuminosity] = useState('');
-  const [boxSizeInput, setBoxSizeInput] = useState('');
-  const [boxSizeValue, setBoxSizeValue] = useState([130, 130]);
 
   const handleHueChange = ({ currentTarget }) => {
     setColorInput(currentTarget.value);
@@ -53,10 +38,6 @@ function App() {
   const handleLuminositySelection = ({ currentTarget }) => {
     const selectedLuminosity = currentTarget.value;
     setLuminosity(selectedLuminosity);
-  };
-
-  const handleBoxSizeChange = ({ currentTarget }) => {
-    setBoxSizeInput(currentTarget.value);
   };
 
   function handleClick() {
@@ -108,21 +89,33 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <MainContainer>
-        <Heading>Random Color Generator</Heading>
+      <Global
+        styles={css`
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+          * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+          }
+
+          body {
+            background-color: #ced4da;
+          }
+        `}
+      />
+      <div css={mainContainer}>
+        <Heading />
         <Form
           handleHueChange={handleHueChange}
           hueValue={colorInput}
           handleLuminositySelection={handleLuminositySelection}
           buttonOnClick={handleClick}
           colorBlockColor={colorValue}
-          handleBoxSizeChange={handleBoxSizeChange}
         />
         <HorizontalRule />
-        <ColorBlock backgroundColor={colorValue} />
-        <HexColor>{colorValue}</HexColor>
-      </MainContainer>
+        <ColorBlock backgroundColorValue={colorValue} />
+        <HexColor colorValue={colorValue} />
+      </div>
     </>
   );
 }

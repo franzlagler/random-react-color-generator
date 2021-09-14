@@ -1,16 +1,18 @@
-import styled from 'styled-components';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import Button from './FormComponents/Button';
 import LuminosityField from './FormComponents/LuminosityField';
 import TextField from './FormComponents/TextField';
 
-const FormFields = styled.div`
+const formFields = css`
   width: 350px;
   margin: 40px auto;
 `;
 
 function Form(props) {
   return (
-    <FormFields>
+    <div css={formFields}>
       <TextField
         id="hue"
         labelName="Hue"
@@ -20,8 +22,8 @@ function Form(props) {
       />
       <LuminosityField onClick={props.handleLuminositySelection} />
 
-      <Button onClick={props.buttonOnClick}>Generate</Button>
-    </FormFields>
+      <Button onClick={props.buttonOnClick} />
+    </div>
   );
 }
 

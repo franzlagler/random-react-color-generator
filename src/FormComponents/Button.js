@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 
-const Button = styled.button`
+const button = css`
   display: block;
   width: 100%;
   height: 70px;
@@ -12,5 +14,13 @@ const Button = styled.button`
   color: #fff;
   font-size: 35px;
 `;
+
+function Button(props) {
+  return (
+    <button onClick={props.onClick} css={button}>
+      Generate
+    </button>
+  );
+}
 
 export default Button;

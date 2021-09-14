@@ -1,12 +1,15 @@
-import styled from 'styled-components';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
+import React from 'react';
 
-const Label = styled.label`
+const label = css`
   margin-left: 5px;
   font-size: 25px;
   font-weight: bolder;
 `;
 
-const TextInput = styled.input`
+const textInput = css`
   display: block;
   width: 350px;
   margin: 15px auto 30px auto;
@@ -19,12 +22,15 @@ const TextInput = styled.input`
 function TextField(props) {
   return (
     <>
-      <Label htmlFor={props.id}>{props.labelName}</Label>
-      <TextInput
+      <label htmlFor={props.id} css={label}>
+        {props.labelName}
+      </label>
+      <input
         id={props.id}
         placeholder={props.inputPlaceholder}
         onChange={props.onChange}
         value={props.inputValue}
+        css={textInput}
       />
     </>
   );

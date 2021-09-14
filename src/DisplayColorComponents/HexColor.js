@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 
-const HexColor = styled.p`
+const hexColor = css`
   width: 200px;
   margin: 30px auto;
   padding: 10px;
@@ -10,5 +12,9 @@ const HexColor = styled.p`
   font-size: 35px;
   text-align: center;
 `;
+
+function HexColor(props) {
+  return <p css={hexColor}>{props.colorValue}</p>;
+}
 
 export default HexColor;
