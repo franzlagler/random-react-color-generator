@@ -14,12 +14,11 @@ function ColorBlock(props) {
 
 `;
   const colorBlock = css`
-    height: 130px;
-    width: 130px;
+    height: ${props.boxSize[1]}px;
+    width: ${props.boxSize[0]}px;
     margin: 40px auto;
     transform: scale(1);
     animation: ${smoothTransition} 3s linear forwards;
-    /*background-color: ${props.backgroundColorValue};*/
     aspect-ratio: 1;
     border: 3px solid #212529;
     border-radius: 10px;

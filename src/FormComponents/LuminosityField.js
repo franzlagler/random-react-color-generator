@@ -9,7 +9,7 @@ const radioInput = css`
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  height: 40px;
+  height: 30px;
   aspect-ratio: 1;
   border: 3px solid #212529;
   &:checked {

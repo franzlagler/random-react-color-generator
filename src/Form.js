@@ -3,6 +3,7 @@
 import { css, jsx } from '@emotion/react';
 import Button from './FormComponents/Button';
 import LuminosityField from './FormComponents/LuminosityField';
+import Slider from './FormComponents/Slider';
 import TextField from './FormComponents/TextField';
 
 const formFields = css`
@@ -21,7 +22,10 @@ function Form(props) {
         onChange={props.handleHueChange}
       />
       <LuminosityField onClick={props.handleLuminositySelection} />
-
+      <Slider
+        sliderValue={props.sliderValue}
+        handleSliderChange={props.handleSliderChange}
+      />
       <Button onClick={props.buttonOnClick} />
     </div>
   );

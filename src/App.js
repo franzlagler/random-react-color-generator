@@ -4,7 +4,7 @@ import { css, Global, jsx } from '@emotion/react';
 // Imports
 import convert from 'color-convert';
 import colorName from 'color-name';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ColorBlock from './DisplayColorComponents/ColorBlock';
 import HexColor from './DisplayColorComponents/HexColor';
 import Form from './Form';
@@ -31,6 +31,8 @@ function App() {
   const [colorValue, setColorValue] = useState('#ffffff');
   const [prevColorValue, setPrevColorValue] = useState('#ffffff');
   const [luminosity, setLuminosity] = useState('');
+  const [sliderValue, setSliderValue] = useState([130, 130]);
+  const [boxSize, setBoxSize] = useState([130, 130]);
 
   const handleHueChange = ({ currentTarget }) => {
     setColorInput(currentTarget.value);
@@ -39,6 +41,18 @@ function App() {
   const handleLuminositySelection = ({ currentTarget }) => {
     const selectedLuminosity = currentTarget.value;
     setLuminosity(selectedLuminosity);
+  };
+
+  const handleSliderChange = ({ currentTarget }) => {
+    const updatedSliderValue = [...sliderValue];
+    const selectedSliderValue = currentTarget.value;
+    if (currentTarget.id === 'width') {
+      updatedSliderValue[0] = selectedSliderValue;
+    } else {
+      updatedSliderValue[1] = selectedSliderValue;
+    }
+
+    setSliderValue(updatedSliderValue);
   };
 
   function handleClick() {
@@ -91,7 +105,12 @@ function App() {
     // Set Color Variale Back to Default
     setColorInput('');
     console.log(prevColorValue);
+
+    // Box Size
   }
+  useEffect(() => {
+    setBoxSize(sliderValue);
+  }, [sliderValue]);
 
   return (
     <>
@@ -115,6 +134,8 @@ function App() {
           handleHueChange={handleHueChange}
           hueValue={colorInput}
           handleLuminositySelection={handleLuminositySelection}
+          handleSliderChange={handleSliderChange}
+          sliderValue={sliderValue}
           buttonOnClick={handleClick}
           colorBlockColor={colorValue}
         />
@@ -122,6 +143,7 @@ function App() {
         <ColorBlock
           backgroundColorValue={colorValue}
           prevBackgroundColorValue={prevColorValue}
+          boxSize={boxSize}
         />
         <HexColor colorValue={colorValue} />
       </div>
